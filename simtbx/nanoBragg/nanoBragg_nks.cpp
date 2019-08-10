@@ -138,9 +138,10 @@ struct mostic_const{
 
 /* add spots from nanocrystal simulation */
 void
-nanoBragg::add_nanoBragg_spots_nks(boost_adaptbx::python::streambuf & output)
+//nanoBragg::add_nanoBragg_spots_nks(boost_adaptbx::python::streambuf & output)
+nanoBragg::add_nanoBragg_spots_nks()
 {
-  boost_adaptbx::python::streambuf::ostream os(output);
+  //boost_adaptbx::python::streambuf::ostream os(output);
   floatimage = raw_pixels.begin();
 
   if(verbose) {printf("TESTING sincg(1,1)= %f\n",sincg(1,1));}

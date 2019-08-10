@@ -19,7 +19,7 @@
 #include <dxtbx/model/beam.h>
 #include <boost/math/special_functions/erf.hpp>
 #include <boost/math/special_functions/fpclassify.hpp>
-#include <boost_adaptbx/python_streambuf.h>
+//#include <boost_adaptbx/python_streambuf.h>
 #include <omptbx/omp_or_stubs.h>
 
 #ifdef NANOBRAGG_HAVE_CUDA
@@ -215,10 +215,10 @@ class nanoBragg {
     double *source_X,*source_Y,*source_Z,*source_I,*source_lambda;
 
     /* version of source list to pass back to Python */
-    af::shared<vec3> pythony_source_XYZ;
-    af::shared<double> pythony_source_intensity;
-    af::shared<double> pythony_source_lambda;
-    scitbx::af::versa<dxtbx::model::Beam, scitbx::af::flex_grid<> > pythony_beams;
+    //af::shared<vec3> pythony_source_XYZ;
+    //af::shared<double> pythony_source_intensity;
+    //af::shared<double> pythony_source_lambda;
+    //scitbx::af::versa<dxtbx::model::Beam, scitbx::af::flex_grid<> > pythony_beams;
 
     /* incident x-ray fluence in photons/m^2   default equivalent to unity
         that is, one electron will scatter 1 ph/SR after a fluence of 1.26e29 ph/m^2
@@ -356,11 +356,11 @@ class nanoBragg {
     double sum_arej,avg_arej,sumd_arej,rms_arej,rmsd_arej;
 
     /* pythony version of structure factors, converted by init_Fhkl */
-    indices pythony_indices;
-    af::shared<double> pythony_amplitudes;
+    //indices pythony_indices;
+    //af::shared<double> pythony_amplitudes;
 
     /* pythony version of amorphous structure factor table vs sin(theta)/lambda, converted by init_stolFbg */
-    af::shared<vec2>  pythony_stolFbg;
+    //af::shared<vec2>  pythony_stolFbg;
 
     /* intensity stats */
     double I,I_bg;
@@ -466,7 +466,7 @@ class nanoBragg {
     nanoBragg(const dxtbx::model::Detector&, const dxtbx::model::Beam& beam, int verbose, int panel_id = 0);
 
     /* the default constructor */
-//    nanoBragg();
+    nanoBragg() {printf("nanoBragg constructed successfully\n");}
 
     /* member-wise constructor, allowing all members to be initialized in various ways */
     nanoBragg(
@@ -580,7 +580,7 @@ class nanoBragg {
 
     /* member function for triggering spot simulation over region of interest */
     void add_nanoBragg_spots();
-    void add_nanoBragg_spots_nks(boost_adaptbx::python::streambuf &);
+    //void add_nanoBragg_spots_nks(boost_adaptbx::python::streambuf &);
 #ifdef NANOBRAGG_HAVE_CUDA
     void allocate_cuda();
     void add_energy_channel_cuda();
@@ -605,7 +605,7 @@ class nanoBragg {
 
     /* utility function for outputting an image to examine */
     void to_smv_format(std::string const& fileout, double intfile_scale, int debug_x, int debug_y);
-    void to_smv_format_streambuf(boost_adaptbx::python::streambuf &, double, int const&, int const&) const;
+    //void to_smv_format_streambuf(boost_adaptbx::python::streambuf &, double, int const&, int const&) const;
 };
 
 

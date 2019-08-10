@@ -1279,6 +1279,7 @@ printf("DEBUG: pythony_stolFbg[1]=(%g,%g)\n",nanoBragg.pythony_stolFbg[1][0],nan
 
     class_<nanoBragg>("nanoBragg",no_init)
       /* constructor that takes a dxtbx detector and beam model */
+      .enable_pickling()
       .def(init<const dxtbx::model::Detector&,
                 const dxtbx::model::Beam&,
                 int, int>(

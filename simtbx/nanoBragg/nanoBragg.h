@@ -466,7 +466,7 @@ class nanoBragg {
     nanoBragg(const dxtbx::model::Detector&, const dxtbx::model::Beam& beam, int verbose, int panel_id = 0);
 
     /* the default constructor */
-//    nanoBragg();
+    nanoBragg() {printf("nanoBragg constructed successfully!\n"}
 
     /* member-wise constructor, allowing all members to be initialized in various ways */
     nanoBragg(

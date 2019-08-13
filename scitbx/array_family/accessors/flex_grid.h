@@ -3,8 +3,8 @@
 
 #include <scitbx/error.h>
 #include <scitbx/array_family/small.h>
-#include <scitbx/array_family/small_reductions.h>
-#include <scitbx/array_family/small_algebra.h>
+//#include <scitbx/array_family/small_reductions.h>
+//#include <scitbx/array_family/small_algebra.h>
 
 namespace scitbx { namespace af {
 

@@ -2,8 +2,8 @@
 #define SCITBX_VEC3_H
 
 #include <scitbx/array_family/tiny.h>
-//#include <scitbx/array_family/operator_traits_builtin.h>
-#include <boost/optional.hpp>
+#include <scitbx/array_family/operator_traits_builtin.h>
+//#include <boost/optional.hpp>
 
 namespace scitbx {
 

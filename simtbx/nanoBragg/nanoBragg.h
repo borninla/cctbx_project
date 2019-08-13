@@ -5,21 +5,21 @@
 #include <string>
 #include <ctime>
 #include <limits>
-#include <scitbx/vec3.h>
-#include <scitbx/mat3.h>
-#include <scitbx/constants.h>
-#include <scitbx/array_family/shared.h>
-#include <scitbx/array_family/flex_types.h>
-#include <scitbx/array_family/accessors/c_grid.h>
-#include <scitbx/array_family/versa.h>
+//#include <scitbx/vec3.h>
+//#include <scitbx/mat3.h>
+//#include <scitbx/constants.h>
+//#include <scitbx/array_family/shared.h>
+//#include <scitbx/array_family/flex_types.h>
+//#include <scitbx/array_family/accessors/c_grid.h>
+//#include <scitbx/array_family/versa.h>
 #include <cctbx/uctbx.h>
 #include <cctbx/crystal_orientation.h>
 #include <cctbx/miller.h>
 #include <dxtbx/model/detector.h>
 #include <dxtbx/model/beam.h>
 #include <boost/math/special_functions/erf.hpp>
-#include <boost/math/special_functions/fpclassify.hpp>
-#include <boost_adaptbx/python_streambuf.h>
+//#include <boost/math/special_functions/fpclassify.hpp>
+//#include <boost_adaptbx/python_streambuf.h>
 #include <omptbx/omp_or_stubs.h>
 
 #ifdef NANOBRAGG_HAVE_CUDA
@@ -466,7 +466,7 @@ class nanoBragg {
     nanoBragg(const dxtbx::model::Detector&, const dxtbx::model::Beam& beam, int verbose, int panel_id = 0);
 
     /* the default constructor */
-    nanoBragg() {printf("nanoBragg constructed successfully!\n"}
+    nanoBragg() {printf("nanoBragg constructed successfully!\n");}
 
     /* member-wise constructor, allowing all members to be initialized in various ways */
     nanoBragg(
@@ -580,7 +580,7 @@ class nanoBragg {
 
     /* member function for triggering spot simulation over region of interest */
     void add_nanoBragg_spots();
-    void add_nanoBragg_spots_nks(boost_adaptbx::python::streambuf &);
+    //void add_nanoBragg_spots_nks(boost_adaptbx::python::streambuf &);
 #ifdef NANOBRAGG_HAVE_CUDA
     void allocate_cuda();
     void add_energy_channel_cuda();
@@ -605,7 +605,7 @@ class nanoBragg {
 
     /* utility function for outputting an image to examine */
     void to_smv_format(std::string const& fileout, double intfile_scale, int debug_x, int debug_y);
-    void to_smv_format_streambuf(boost_adaptbx::python::streambuf &, double, int const&, int const&) const;
+    //void to_smv_format_streambuf(boost_adaptbx::python::streambuf &, double, int const&, int const&) const;
 };
 
 

@@ -5,20 +5,20 @@
 #include <string>
 #include <ctime>
 #include <limits>
-#include <scitbx/vec3.h>
-#include <scitbx/mat3.h>
-#include <scitbx/constants.h>
-#include <scitbx/array_family/shared.h>
-#include <scitbx/array_family/flex_types.h>
-#include <scitbx/array_family/accessors/c_grid.h>
-#include <scitbx/array_family/versa.h>
+//#include <scitbx/vec3.h>
+//#include <scitbx/mat3.h>
+//#include <scitbx/constants.h>
+//#include <scitbx/array_family/shared.h>
+//#include <scitbx/array_family/flex_types.h>
+//#include <scitbx/array_family/accessors/c_grid.h>
+//#include <scitbx/array_family/versa.h>
 #include <cctbx/uctbx.h>
 #include <cctbx/crystal_orientation.h>
 #include <cctbx/miller.h>
 #include <dxtbx/model/detector.h>
 #include <dxtbx/model/beam.h>
 #include <boost/math/special_functions/erf.hpp>
-#include <boost/math/special_functions/fpclassify.hpp>
+//#include <boost/math/special_functions/fpclassify.hpp>
 //#include <boost_adaptbx/python_streambuf.h>
 #include <omptbx/omp_or_stubs.h>
 
@@ -466,7 +466,7 @@ class nanoBragg {
     nanoBragg(const dxtbx::model::Detector&, const dxtbx::model::Beam& beam, int verbose, int panel_id = 0);
 
     /* the default constructor */
-    nanoBragg() {printf("nanoBragg constructed successfully\n");}
+    nanoBragg() {printf("nanoBragg constructed successfully!\n");}
 
     /* member-wise constructor, allowing all members to be initialized in various ways */
     nanoBragg(

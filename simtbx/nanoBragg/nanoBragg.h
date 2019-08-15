@@ -5,7 +5,7 @@
 #include <string>
 #include <ctime>
 #include <limits>
-//#include <scitbx/vec3.h>
+#include <scitbx/vec3.h>
 //#include <scitbx/mat3.h>
 //#include <scitbx/constants.h>
 //#include <scitbx/array_family/shared.h>
@@ -466,7 +466,7 @@ class nanoBragg {
     nanoBragg(const dxtbx::model::Detector&, const dxtbx::model::Beam& beam, int verbose, int panel_id = 0);
 
     /* the default constructor */
-    nanoBragg() {printf("nanoBragg constructed successfully!\n");}
+//    nanoBragg() {printf("nanoBragg constructed successfully!\n");}
 
     /* member-wise constructor, allowing all members to be initialized in various ways */
     nanoBragg(
@@ -488,7 +488,6 @@ class nanoBragg {
       /* Based on valgrind, these are the variables that need to be free'd within this test:
          export LIBTBX_VALGRIND=valgrind --leak-check=full --tool=memcheck --suppressions=${ROOT}/cctbx_project/libtbx/valgrind-python-cci.supp
          libtbx.valgrind libtbx.python ${ROOT}/cctbx_project/simtbx/nanoBragg/tst_nanoBragg_basic.py
-
          Use of the free_all() class method within the Python script is meant to be an interim
          measure to prevent memory leaks, until such time as the nanoBragg class is refactored,
          with class variables that manage memory and lifetime.  These will include std::string,

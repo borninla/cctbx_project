@@ -451,10 +451,10 @@ nanoBragg::init_defaults()
     stolimage = NULL;
     Fimage = NULL;
 
-    pythony_indices.clear();
-    pythony_amplitudes.clear();
-    pythony_stolFbg.clear();
-    pythony_source_XYZ.clear();
+    //pythony_indices.clear();
+    //pythony_amplitudes.clear();
+    //pythony_stolFbg.clear();
+    //pythony_source_XYZ.clear();
 
     /* intensity stats */
     max_I = 0.0;
@@ -1672,30 +1672,30 @@ nanoBragg::init_Fhkl()
         rewind(infile);
     }
 
-    if(pythony_indices.size())
-    {
-        if(verbose) printf(" noticed pythony_indices.size() = %ld\n",pythony_indices.size());
-        /* need to know how much memory to allocate for Fhkl array */
-        h_min=k_min=l_min=1e9;
-        h_max=k_max=l_max=-1e9;
-        miller_t hkl;
-        for (i=0; i < pythony_indices.size(); ++i)
-        {
-            hkl = pythony_indices[i];
-            if(pythony_amplitudes.size()) F_cell = pythony_amplitudes[i];
-            h0 = hkl[0];
-            k0 = hkl[1];
-            l0 = hkl[2];
-            if(verbose>9) printf("DEBUG: hkl# %d : %d %d %d = %g\n",i,h0,k0,l0,F_cell);
-            if(h_min > h0) h_min = h0;
-            if(k_min > k0) k_min = k0;
-            if(l_min > l0) l_min = l0;
-            if(h_max < h0) h_max = h0;
-            if(k_max < k0) k_max = k0;
-            if(l_max < l0) l_max = l0;
-            ++hkls;
-        }
-    }
+    //if(pythony_indices.size())
+    //{
+    //    if(verbose) printf(" noticed pythony_indices.size() = %ld\n",pythony_indices.size());
+    //    /* need to know how much memory to allocate for Fhkl array */
+    //    h_min=k_min=l_min=1e9;
+    //    h_max=k_max=l_max=-1e9;
+    //    miller_t hkl;
+    //    for (i=0; i < pythony_indices.size(); ++i)
+    //    {
+    //        hkl = pythony_indices[i];
+    //        if(pythony_amplitudes.size()) F_cell = pythony_amplitudes[i];
+    //        h0 = hkl[0];
+    //        k0 = hkl[1];
+    //        l0 = hkl[2];
+    //        if(verbose>9) printf("DEBUG: hkl# %d : %d %d %d = %g\n",i,h0,k0,l0,F_cell);
+    //        if(h_min > h0) h_min = h0;
+    //        if(k_min > k0) k_min = k0;
+    //        if(l_min > l0) l_min = l0;
+    //        if(h_max < h0) h_max = h0;
+    //        if(k_max < k0) k_max = k0;
+    //        if(l_max < l0) l_max = l0;
+    //        ++hkls;
+    //    }
+    //}
 
     if(1)
     {
@@ -1749,24 +1749,24 @@ nanoBragg::init_Fhkl()
         fclose(infile);
     }
 
-    if(pythony_indices.size() && pythony_amplitudes.size())
-    {
-        if(verbose) printf("initializing Fhkl with pythony indices and amplitudes\n");
-        miller_t hkl;
-        for (i=0; i < pythony_indices.size(); ++i)
-        {
-            hkl = pythony_indices[i];
-            F_cell = pythony_amplitudes[i];
-            h0 = hkl[0];
-            k0 = hkl[1];
-            l0 = hkl[2];
-            Fhkl[h0-h_min][k0-k_min][l0-l_min]=F_cell;
-            if(verbose>9) printf("F %d : %d %d %d = %g\n",i,h0,k0,l0,F_cell);
-        }
-        if(verbose) printf("settting F000 to %g\n",F000);
-        Fhkl[-h_min][-k_min][-l_min] = F000;
-        if(verbose) printf("done initializing Fhkl:\n");
-    }
+    //if(pythony_indices.size() && pythony_amplitudes.size())
+    //{
+    //    if(verbose) printf("initializing Fhkl with pythony indices and amplitudes\n");
+    //    miller_t hkl;
+    //    for (i=0; i < pythony_indices.size(); ++i)
+    //    {
+    //        hkl = pythony_indices[i];
+    //        F_cell = pythony_amplitudes[i];
+    //        h0 = hkl[0];
+    //        k0 = hkl[1];
+    //        l0 = hkl[2];
+    //        Fhkl[h0-h_min][k0-k_min][l0-l_min]=F_cell;
+    //        if(verbose>9) printf("F %d : %d %d %d = %g\n",i,h0,k0,l0,F_cell);
+    //    }
+    //    if(verbose) printf("settting F000 to %g\n",F000);
+    //    Fhkl[-h_min][-k_min][-l_min] = F000;
+    //    if(verbose) printf("done initializing Fhkl:\n");
+    //}
 }
 // end of init_Fhkl
 
@@ -1807,11 +1807,11 @@ nanoBragg::init_background()
     }
 
     /* initialize from python flex array of vec2s */
-    if(pythony_stolFbg.size())
-    {
-        /* we will need enough space for this */
-        stols = pythony_stolFbg.size();
-    }
+    //if(pythony_stolFbg.size())
+    //{
+    //    /* we will need enough space for this */
+    //    stols = pythony_stolFbg.size();
+    //}
 
     if(allocated_stols != stols)
     {
@@ -1848,19 +1848,19 @@ nanoBragg::init_background()
         allocated_stols = stols;
     }
 
-    if(pythony_stolFbg.size())
-    {
-        if(verbose) printf("initializing Fbg with pythony array %d\n",stols);
-        for (i=0; i < stols; ++i)
-        {
-            stol_of[i] = pythony_stolFbg[i][0];
-            Fbg_of[i]  = pythony_stolFbg[i][1];
-            if(verbose>6) printf("Fbg # %d ( stol= %g ) = %g\n",i,stol_of[i],Fbg_of[i]);
-        }
-        /* flag to add padding on top and bottom */
-        stol_of[stols] = NAN;
-        if(verbose) printf("done initializing stol_of and Fbg_of\n");
-    }
+    //if(pythony_stolFbg.size())
+    //{
+    //    if(verbose) printf("initializing Fbg with pythony array %d\n",stols);
+    //    for (i=0; i < stols; ++i)
+    //    {
+    //        stol_of[i] = pythony_stolFbg[i][0];
+    //        Fbg_of[i]  = pythony_stolFbg[i][1];
+    //        if(verbose>6) printf("Fbg # %d ( stol= %g ) = %g\n",i,stol_of[i],Fbg_of[i]);
+    //    }
+    //    /* flag to add padding on top and bottom */
+    //    stol_of[stols] = NAN;
+    //    if(verbose) printf("done initializing stol_of and Fbg_of\n");
+    //}
 
     if(stols == 0 && amorphous_volume != 0.0)
     {
@@ -1963,130 +1963,130 @@ nanoBragg::init_sources()
     }
 
 
-    if(pythony_beams.size())
-    {
-        if(verbose>8) printf("pythony_beams.size()= %ld\n",pythony_beams.size());
-        sources = pythony_beams.size();
-        if(verbose>8) printf("total sources: %d\n",sources);
-        if(allocated_sources != sources && sources>0)
-        {
-            /* free any previous allocation */
-            if(source_X != NULL) free(source_X);
-            if(source_Y != NULL) free(source_Y);
-            if(source_Z != NULL) free(source_Z);
-            if(source_I != NULL) free(source_I);
-            if(source_lambda != NULL) free(source_lambda);
+    //if(pythony_beams.size())
+    //{
+    //    if(verbose>8) printf("pythony_beams.size()= %ld\n",pythony_beams.size());
+    //    sources = pythony_beams.size();
+    //    if(verbose>8) printf("total sources: %d\n",sources);
+    //    if(allocated_sources != sources && sources>0)
+    //    {
+    //        /* free any previous allocation */
+    //        if(source_X != NULL) free(source_X);
+    //        if(source_Y != NULL) free(source_Y);
+    //        if(source_Z != NULL) free(source_Z);
+    //        if(source_I != NULL) free(source_I);
+    //        if(source_lambda != NULL) free(source_lambda);
 
-            /* allocate enough space */
-            if(verbose>6) printf("allocating space for %d sources\n",sources);
-            source_X = (double *) calloc(sources+10,sizeof(double));
-            source_Y = (double *) calloc(sources+10,sizeof(double));
-            source_Z = (double *) calloc(sources+10,sizeof(double));
-            source_I = (double *) calloc(sources+10,sizeof(double));
-            source_lambda = (double *) calloc(sources+10,sizeof(double));
-            allocated_sources = sources;
-        }
+    //        /* allocate enough space */
+    //        if(verbose>6) printf("allocating space for %d sources\n",sources);
+    //        source_X = (double *) calloc(sources+10,sizeof(double));
+    //        source_Y = (double *) calloc(sources+10,sizeof(double));
+    //        source_Z = (double *) calloc(sources+10,sizeof(double));
+    //        source_I = (double *) calloc(sources+10,sizeof(double));
+    //        source_lambda = (double *) calloc(sources+10,sizeof(double));
+    //        allocated_sources = sources;
+    //    }
 
-        if(verbose) printf("initializing sources with pythony sources\n");
-        vec3 xyz,beamdir=vec3(0,0,0),polarvec = vec3(0,0,0);
-        double flux_sum = 0.0, lambda_sum = 0.0, polar_sum = 0.0, div_sum = 0.0;
-        for (i=0; i < sources; ++i)
-        {
-            xyz = pythony_beams[i].get_direction();
-            source_X[i] = xyz[0];
-            source_Y[i] = xyz[1];
-            source_Z[i] = xyz[2];
-            source_I[i] = pythony_beams[i].get_flux();
-            if(isnan(source_I) || source_I[i]==0.) source_I[i] = 1.0/sources;
-            flux_sum += source_I[i];
-            source_lambda[i] = pythony_beams[i].get_wavelength();
-            if(isnan(source_lambda[i]) || source_lambda[i]==0.) source_lambda[i] = lambda0;
-            lambda_sum += source_lambda[i];
-            if(verbose>8) printf("source %d :  xyz= ( %g %g %g ), I= %g lambda=%g\n",i,source_X[i],source_Y[i],source_Z[i],source_I[i],source_lambda[i]);
+    //    if(verbose) printf("initializing sources with pythony sources\n");
+    //    vec3 xyz,beamdir=vec3(0,0,0),polarvec = vec3(0,0,0);
+    //    double flux_sum = 0.0, lambda_sum = 0.0, polar_sum = 0.0, div_sum = 0.0;
+    //    for (i=0; i < sources; ++i)
+    //    {
+    //        xyz = pythony_beams[i].get_direction();
+    //        source_X[i] = xyz[0];
+    //        source_Y[i] = xyz[1];
+    //        source_Z[i] = xyz[2];
+    //        source_I[i] = pythony_beams[i].get_flux();
+    //        if(isnan(source_I) || source_I[i]==0.) source_I[i] = 1.0/sources;
+    //        flux_sum += source_I[i];
+    //        source_lambda[i] = pythony_beams[i].get_wavelength();
+    //        if(isnan(source_lambda[i]) || source_lambda[i]==0.) source_lambda[i] = lambda0;
+    //        lambda_sum += source_lambda[i];
+    //        if(verbose>8) printf("source %d :  xyz= ( %g %g %g ), I= %g lambda=%g\n",i,source_X[i],source_Y[i],source_Z[i],source_I[i],source_lambda[i]);
 
-            /* average quantities that we store as one value */
-            div_sum += pythony_beams[i].get_divergence();
-            polar_sum += pythony_beams[i].get_polarization_fraction();
-            polarvec += pythony_beams[i].get_polarization_normal();
-            beamdir += xyz;
-        }
-        /* update averaged parameters */
-        if(lambda_sum>0.0) lambda0 = lambda_sum/sources;
-        polarization = polar_sum/sources;
-        hdivrange=vdivrange=div_sum/sources;
-        vert_vector[1] = polarvec[0];vert_vector[2] = polarvec[1];vert_vector[3] = polarvec[2];
-        beam_vector[1] = beamdir[0]; beam_vector[2] = beamdir[1]; beam_vector[3] = beamdir[2];
-        unitize(beam_vector,beam_vector);
-        unitize(vert_vector,vert_vector);
-        cross_product(beam_vector,vert_vector,polar_vector);
-        unitize(polar_vector,polar_vector);
+    //        /* average quantities that we store as one value */
+    //        div_sum += pythony_beams[i].get_divergence();
+    //        polar_sum += pythony_beams[i].get_polarization_fraction();
+    //        polarvec += pythony_beams[i].get_polarization_normal();
+    //        beamdir += xyz;
+    //    }
+    //    /* update averaged parameters */
+    //    if(lambda_sum>0.0) lambda0 = lambda_sum/sources;
+    //    polarization = polar_sum/sources;
+    //    hdivrange=vdivrange=div_sum/sources;
+    //    vert_vector[1] = polarvec[0];vert_vector[2] = polarvec[1];vert_vector[3] = polarvec[2];
+    //    beam_vector[1] = beamdir[0]; beam_vector[2] = beamdir[1]; beam_vector[3] = beamdir[2];
+    //    unitize(beam_vector,beam_vector);
+    //    unitize(vert_vector,vert_vector);
+    //    cross_product(beam_vector,vert_vector,polar_vector);
+    //    unitize(polar_vector,polar_vector);
 
-        /* take in total flux */
-        if(flux_sum > 0)
-        {
-            flux = flux_sum;
-            init_beam();
-        }
-        /* make sure stored source intensities are fractional */
-        double norm = flux_sum; // /sources;  in the setter for source_intensity it says the fractional intensities should sum to 1..
-        for (i=0; i < sources && norm>0.0; ++i)
-        {
-            source_I[i] /= norm;
-        }
+    //    /* take in total flux */
+    //    if(flux_sum > 0)
+    //    {
+    //        flux = flux_sum;
+    //        init_beam();
+    //    }
+    //    /* make sure stored source intensities are fractional */
+    //    double norm = flux_sum; // /sources;  in the setter for source_intensity it says the fractional intensities should sum to 1..
+    //    for (i=0; i < sources && norm>0.0; ++i)
+    //    {
+    //        source_I[i] /= norm;
+    //    }
 
-        if(verbose) printf("done initializing sources:\n");
-    }
+    //    if(verbose) printf("done initializing sources:\n");
+    //}
 
 
-    if(pythony_source_XYZ.size() || pythony_source_intensity.size() || pythony_source_lambda.size())
-    {
-        if(verbose>8) printf("pythony_source_XYZ.size()= %ld\n",pythony_source_XYZ.size());
-        if(verbose>8) printf("pythony_source_intensity.size()= %ld\n",pythony_source_intensity.size());
-        if(verbose>8) printf("pythony_source_lambda.size()= %ld\n",pythony_source_lambda.size());
-        sources = pythony_source_XYZ.size();
-        if(sources < pythony_source_intensity.size()) sources = pythony_source_intensity.size();
-        if(sources < pythony_source_lambda.size()) sources = pythony_source_lambda.size();
-        if(verbose>8) printf("total sources: %d\n",sources);
-        if(allocated_sources != sources && sources>0)
-        {
-            /* free any previous allocation */
-            if(source_X != NULL) free(source_X);
-            if(source_Y != NULL) free(source_Y);
-            if(source_Z != NULL) free(source_Z);
-            if(source_I != NULL) free(source_I);
-            if(source_lambda != NULL) free(source_lambda);
+    //if(pythony_source_XYZ.size() || pythony_source_intensity.size() || pythony_source_lambda.size())
+    //{
+    //    if(verbose>8) printf("pythony_source_XYZ.size()= %ld\n",pythony_source_XYZ.size());
+    //    if(verbose>8) printf("pythony_source_intensity.size()= %ld\n",pythony_source_intensity.size());
+    //    if(verbose>8) printf("pythony_source_lambda.size()= %ld\n",pythony_source_lambda.size());
+    //    sources = pythony_source_XYZ.size();
+    //    if(sources < pythony_source_intensity.size()) sources = pythony_source_intensity.size();
+    //    if(sources < pythony_source_lambda.size()) sources = pythony_source_lambda.size();
+    //    if(verbose>8) printf("total sources: %d\n",sources);
+    //    if(allocated_sources != sources && sources>0)
+    //    {
+    //        /* free any previous allocation */
+    //        if(source_X != NULL) free(source_X);
+    //        if(source_Y != NULL) free(source_Y);
+    //        if(source_Z != NULL) free(source_Z);
+    //        if(source_I != NULL) free(source_I);
+    //        if(source_lambda != NULL) free(source_lambda);
 
-            /* allocate enough space */
-            if(verbose>6) printf("allocating space for %d sources\n",sources);
-            source_X = (double *) calloc(sources+10,sizeof(double));
-            source_Y = (double *) calloc(sources+10,sizeof(double));
-            source_Z = (double *) calloc(sources+10,sizeof(double));
-            source_I = (double *) calloc(sources+10,sizeof(double));
-            source_lambda = (double *) calloc(sources+10,sizeof(double));
-            allocated_sources = sources;
-        }
+    //        /* allocate enough space */
+    //        if(verbose>6) printf("allocating space for %d sources\n",sources);
+    //        source_X = (double *) calloc(sources+10,sizeof(double));
+    //        source_Y = (double *) calloc(sources+10,sizeof(double));
+    //        source_Z = (double *) calloc(sources+10,sizeof(double));
+    //        source_I = (double *) calloc(sources+10,sizeof(double));
+    //        source_lambda = (double *) calloc(sources+10,sizeof(double));
+    //        allocated_sources = sources;
+    //    }
 
-        /* make sure sizes match, or else? */
-        pythony_source_XYZ.resize(sources);
-        pythony_source_intensity.resize(sources);
-        pythony_source_lambda.resize(sources);
+    //    /* make sure sizes match, or else? */
+    //    pythony_source_XYZ.resize(sources);
+    //    pythony_source_intensity.resize(sources);
+    //    pythony_source_lambda.resize(sources);
 
-        if(verbose) printf("initializing sources with pythony sources\n");
-        vec3 xyz;
-        for (i=0; i < pythony_source_XYZ.size(); ++i)
-        {
-            xyz = pythony_source_XYZ[i];
-            source_X[i] = xyz[0];
-            source_Y[i] = xyz[1];
-            source_Z[i] = xyz[2];
-            source_I[i] = pythony_source_intensity[i];
-            if(isnan(source_I[i]) || source_I[i]==0.) source_I[i] = 1.0/sources;
-            source_lambda[i] = pythony_source_lambda[i];
-            if(isnan(source_lambda[i]) || source_lambda[i]==0.) source_lambda[i] = lambda0;
-            if(verbose>8) printf("source %d :  xyz= ( %g %g %g ), I= %g lambda=%g\n",i,source_X[i],source_Y[i],source_Z[i],source_I[i],source_lambda[i]);
-        }
-        if(verbose) printf("done initializing sources:\n");
-    }
+    //    if(verbose) printf("initializing sources with pythony sources\n");
+    //    vec3 xyz;
+    //    for (i=0; i < pythony_source_XYZ.size(); ++i)
+    //    {
+    //        xyz = pythony_source_XYZ[i];
+    //        source_X[i] = xyz[0];
+    //        source_Y[i] = xyz[1];
+    //        source_Z[i] = xyz[2];
+    //        source_I[i] = pythony_source_intensity[i];
+    //        if(isnan(source_I[i]) || source_I[i]==0.) source_I[i] = 1.0/sources;
+    //        source_lambda[i] = pythony_source_lambda[i];
+    //        if(isnan(source_lambda[i]) || source_lambda[i]==0.) source_lambda[i] = lambda0;
+    //        if(verbose>8) printf("source %d :  xyz= ( %g %g %g ), I= %g lambda=%g\n",i,source_X[i],source_Y[i],source_Z[i],source_I[i],source_lambda[i]);
+    //    }
+    //    if(verbose) printf("done initializing sources:\n");
+    //}
 
 
     if(sources == 0)
@@ -2200,17 +2200,17 @@ nanoBragg::show_sources()
         printf("%d %g %g %g   %g %.6g\n",source,X,Y,Z,I,lambda);
     }
     printf("pythony sources:\n");
-    for(source=0;source<pythony_source_lambda.size();++source){
+    //for(source=0;source<pythony_source_lambda.size();++source){
 
-        /* retrieve stuff from cache */
-        X = pythony_source_XYZ[source][0];
-        Y = pythony_source_XYZ[source][1];
-        Z = pythony_source_XYZ[source][2];
-        I = pythony_source_intensity[source];
-        lambda = pythony_source_lambda[source];
+    //    /* retrieve stuff from cache */
+    //    X = pythony_source_XYZ[source][0];
+    //    Y = pythony_source_XYZ[source][1];
+    //    Z = pythony_source_XYZ[source][2];
+    //    I = pythony_source_intensity[source];
+    //    lambda = pythony_source_lambda[source];
 
-        printf("pythony: %d %g %g %g   %g %.6g\n",source,X,Y,Z,I,lambda);
-    }
+    //    printf("pythony: %d %g %g %g   %g %.6g\n",source,X,Y,Z,I,lambda);
+    //}
 }
 // end of init_sources()
 
@@ -3751,70 +3751,70 @@ nanoBragg::add_noise()
 }
 // end of add_noise()
 
-void
-nanoBragg::to_smv_format_streambuf(boost_adaptbx::python::streambuf & output,
-    double intfile_scale, int const&debug_x, int const& debug_y) const {
-    boost_adaptbx::python::streambuf::ostream os(output);
-    const double* floatimage = raw_pixels.begin();
-    double max_value = (double)std::numeric_limits<unsigned short int>::max();
-    double saturation = floor(max_value - 1 );
-    /* output as ints */
-
-    unsigned short int intimage;
-    double max_I = this-> max_I;
-    double max_I_x = this-> max_I_x;
-    double max_I_y = this-> max_I_y;
-    if(intfile_scale <= 0.0){
-        /* need to auto-scale */
-        int i=0;
-        for(int spixel=0;spixel<spixels;++spixel)
-        {
-            for(int fpixel=0;fpixel<fpixels;++fpixel)
-            {
-                if(fpixel==debug_x && spixel==debug_y) printf("DEBUG: pixel # %d at (%d,%d) has value %g\n",i,fpixel,spixel,floatimage[i]);
-                if(i==0 || max_I < floatimage[i])
-                {
-                    max_I = floatimage[i];
-                    max_I_x = fpixel;
-                    max_I_y = spixel;
-                }
-                ++i;
-            }
-        }
-        if(verbose) printf("providing default scaling: max_I = %g @ (%g %g)\n",max_I,max_I_x,max_I_y);
-        intfile_scale = 1.0;
-        if(max_I>0.0) intfile_scale = 55000.0/(max_I);
-    }
-    if(verbose) printf("scaling data by: intfile_scale = %g\n",intfile_scale);
-
-    double sum = 0.0;
-    max_I = 0.0;
-    int i = 0;
-    for(int spixel=0;spixel<spixels;++spixel)
-    {
-        for(int fpixel=0;fpixel<fpixels;++fpixel)
-        {
-            /* no noise, just use intfile_scale */
-
-            intimage = (unsigned short int) (std::min(saturation, floatimage[i]*intfile_scale ));
-            os.write((char *) &intimage, sizeof(unsigned short int));
-
-            if(verbose>90) printf("DEBUG #%d %g -> %g -> %d\n",i,floatimage[i],floatimage[i]*intfile_scale,intimage);
-
-            if((double) intimage > max_I || i==0) {
-                max_I = (double) intimage;
-                max_I_x = fpixel;
-                max_I_y = spixel;
-            }
-            if(fpixel==debug_x && spixel==debug_y) printf("DEBUG: pixel # %d at (%d,%d) has int value %d\n",i,fpixel,spixel,intimage);
-
-            sum += intimage;
-            ++i;
-        }
-    }
-    // os << "Hello world";
-
-}
+//void
+//nanoBragg::to_smv_format_streambuf(boost_adaptbx::python::streambuf & output,
+//    double intfile_scale, int const&debug_x, int const& debug_y) const {
+//    boost_adaptbx::python::streambuf::ostream os(output);
+//    const double* floatimage = raw_pixels.begin();
+//    double max_value = (double)std::numeric_limits<unsigned short int>::max();
+//    double saturation = floor(max_value - 1 );
+//    /* output as ints */
+//
+//    unsigned short int intimage;
+//    double max_I = this-> max_I;
+//    double max_I_x = this-> max_I_x;
+//    double max_I_y = this-> max_I_y;
+//    if(intfile_scale <= 0.0){
+//        /* need to auto-scale */
+//        int i=0;
+//        for(int spixel=0;spixel<spixels;++spixel)
+//        {
+//            for(int fpixel=0;fpixel<fpixels;++fpixel)
+//            {
+//                if(fpixel==debug_x && spixel==debug_y) printf("DEBUG: pixel # %d at (%d,%d) has value %g\n",i,fpixel,spixel,floatimage[i]);
+//                if(i==0 || max_I < floatimage[i])
+//                {
+//                    max_I = floatimage[i];
+//                    max_I_x = fpixel;
+//                    max_I_y = spixel;
+//                }
+//                ++i;
+//            }
+//        }
+//        if(verbose) printf("providing default scaling: max_I = %g @ (%g %g)\n",max_I,max_I_x,max_I_y);
+//        intfile_scale = 1.0;
+//        if(max_I>0.0) intfile_scale = 55000.0/(max_I);
+//    }
+//    if(verbose) printf("scaling data by: intfile_scale = %g\n",intfile_scale);
+//
+//    double sum = 0.0;
+//    max_I = 0.0;
+//    int i = 0;
+//    for(int spixel=0;spixel<spixels;++spixel)
+//    {
+//        for(int fpixel=0;fpixel<fpixels;++fpixel)
+//        {
+//            /* no noise, just use intfile_scale */
+//
+//            intimage = (unsigned short int) (std::min(saturation, floatimage[i]*intfile_scale ));
+//            os.write((char *) &intimage, sizeof(unsigned short int));
+//
+//            if(verbose>90) printf("DEBUG #%d %g -> %g -> %d\n",i,floatimage[i],floatimage[i]*intfile_scale,intimage);
+//
+//            if((double) intimage > max_I || i==0) {
+//                max_I = (double) intimage;
+//                max_I_x = fpixel;
+//                max_I_y = spixel;
+//            }
+//            if(fpixel==debug_x && spixel==debug_y) printf("DEBUG: pixel # %d at (%d,%d) has int value %d\n",i,fpixel,spixel,intimage);
+//
+//            sum += intimage;
+//            ++i;
+//        }
+//    }
+//    // os << "Hello world";
+//
+//}
 
 void
 nanoBragg::to_smv_format(

@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include <simtbx/nanoBragg/nanoBragg.h>
+#include "herbgrind.h"
 
 int main() {
   int N = 5; //replacing later with crystal.number_of_cells call
@@ -23,8 +24,10 @@ int main() {
   double mosaicity = 0;
   int oversample = 0;
   int vervbose = 1;
-
-  simtbx::nanoBragg::nanoBragg nb(detpixels_slowfast, Ncells_abc, unitcell, misset, beam_center, distance, pixelsize, wavelength, divergence, dispersion, mosaicity, oversample, vervbose);
   
+  HERBGRIND_BEGIN();
+  simtbx::nanoBragg::nanoBragg nb(detpixels_slowfast, Ncells_abc, unitcell, misset, beam_center, distance, pixelsize, wavelength, divergence, dispersion, mosaicity, oversample, vervbose);
+  HERBGRIND_END();  
+
   return 0;
 }

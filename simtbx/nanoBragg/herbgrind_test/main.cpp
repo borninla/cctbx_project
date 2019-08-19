@@ -2,6 +2,7 @@
 
 #include <simtbx/nanoBragg/nanoBragg.h>
 #include "herbgrind.h"
+#include "microcrystal.h"
 
 int main() {
   int N = 5; //replacing later with crystal.number_of_cells call
@@ -26,6 +27,9 @@ int main() {
   int vervbose = 1;
   
   HERBGRIND_BEGIN();
+  Microcrystal mc(4000, 4., 1.0);
+  mc.number_of_cells();
+
   simtbx::nanoBragg::nanoBragg nb(detpixels_slowfast, Ncells_abc, unitcell, misset, beam_center, distance, pixelsize, wavelength, divergence, dispersion, mosaicity, oversample, vervbose);
   HERBGRIND_END();  
 

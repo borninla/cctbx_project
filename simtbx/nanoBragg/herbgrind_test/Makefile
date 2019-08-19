@@ -1,5 +1,5 @@
 CC						:= g++
-CCFLAGS 			:= -std=c++11 -g
+CCFLAGS 			:= -std=c++11 -g -w
 INC						:= ${SCRATCH}/modules/cctbx_project ${SCRATCH}/build/include ${SCRATCH}/modules ${SCRATCH}/modules/boost
 INC						+= ${SCRATCH}/herbgrind-master/valgrind/herbgrind/include
 INC_PARAMS		:= $(foreach d, $(INC), -I$d)

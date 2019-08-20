@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "george_sherrell.h"
+
 class Gen_FModel {
   public: 
     Gen_FModel(float resolution, /* pdb_text, */ std::string algorithm /* , wavelength */ );

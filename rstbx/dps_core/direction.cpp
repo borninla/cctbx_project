@@ -42,8 +42,8 @@ pd::Direction::is_nearly_collinear(const Direction & other) const {
   //only valid if these are unit vectors
   double dot = this->dvec * other.dvec;
   double inner_angle = std::acos(std::min(1.0,(double)std::abs(dot)));
-  return inner_angle < 10.0*constants::pi_180 ||
-         inner_angle > 170.0*constants::pi_180;  //10 degrees
+  return inner_angle < 2.0*constants::pi_180 ||
+         inner_angle > 178.0*constants::pi_180;  //10 degrees
 }
 
 bool pd::kvalcmp::operator() (const pd::Direction& a, const pd::Direction& b){

@@ -1,7 +1,7 @@
 CC						:= g++
 CCFLAGS 			:= -std=c++11 -g -w
 INC						:= ${SCRATCH}/modules/cctbx_project ${SCRATCH}/build/include ${SCRATCH}/modules ${SCRATCH}/modules/boost
-INC						+= ${SCRATCH}/herbgrind-master/valgrind/herbgrind/include
+INC						+= ${SCRATCH}/herbgrind/valgrind/herbgrind/include #${SCRATCH}/conda_base/include/python2.7
 INC_PARAMS		:= $(foreach d, $(INC), -I$d)
 MACRO					:= NANOBRAGG_HAVE_CUDA
 MACRO_PARAMS	:= $(foreach m, $(MACRO), -D$m)

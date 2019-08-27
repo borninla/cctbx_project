@@ -8,7 +8,6 @@
 #include <cstdlib>
 
 #include <scitbx/array_family/flex_types.h>
-#include <scitbx/array_family/versa.h>
 
 class George_Sherrell{
   public:
@@ -28,10 +27,10 @@ class George_Sherrell{
           tokens.push_back(atof(current_token));
           current_token = strtok(nullptr, "\t");
         }
-        std::cout << tokens[0] << " " << tokens[1] << " " << tokens[2] << std::endl;
-        //energy.append(tokens[0]);
-        //fp.append(tokens[1]);
-        //fdp.append(tokens[2]);
+        //std::cout << tokens[0] << " " << tokens[1] << " " << tokens[2] << std::endl;
+        energy.append(tokens[0]);
+        fp.append(tokens[1]);
+        fdp.append(tokens[2]);
       }
     }
 };

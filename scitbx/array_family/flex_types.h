@@ -8,9 +8,24 @@
 namespace scitbx { namespace af {
 
   template <typename ElementType>
+  struct flex_default_element
+  {
+    static ElementType
+    get() { return ElementType(); }
+  };
+
+  template <typename ElementType>
   struct flex
   {
     typedef versa<ElementType, flex_grid<> > type;
+    //type a;
+
+    //void append(ElementType const& x)
+    //{
+    //  base_array_type b = flex_as_base_array(a);
+    //  b.push_back(x);
+    //  a.resize(flex_grid<>(b.size()), flex_default_element<ElementType>::get());
+    //}
   };
 
   template <typename ElementType>

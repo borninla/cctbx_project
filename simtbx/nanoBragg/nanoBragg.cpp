@@ -1376,10 +1376,10 @@ nanoBragg::init_cell()
         a_star[1] = a_star[0];
         b_star[1] = b_star[0]*cos_gamma_star;
         c_star[1] = c_star[0]*cos_beta_star;
-        a_star[2] = 0.0;
+	a_star[2] = 0.0;
         b_star[2] = b_star[0]*sin_gamma_star;
         c_star[2] = c_star[0]*(cos_alpha_star-cos_beta_star*cos_gamma_star)/sin_gamma_star;
-        a_star[3] = 0.0;
+	a_star[3] = 0.0;
         b_star[3] = 0.0;
         c_star[3] = c_star[0]*V_cell/(a_A[0]*b_A[0]*c_A[0]*sin_gamma_star);
     }
